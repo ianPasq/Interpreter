@@ -28,7 +28,7 @@ class Lexer(object):
     def advance(self):
         self.pos += 1
         if self.pos > len(self.text) - 1:
-            self.current_char = None # Indicates end of input
+            self.current_char = None 
         else:
             self.current_char = self.text[self.pos]
 
@@ -437,23 +437,20 @@ class Interpreter(NodeVisitor):
         tree = self.parser.parse()
         return self.visit(tree)
 
-    def main():
-        while True:
-            try:
-                try:
-                    text = raw_input('spi> ')
-                except NameError: # Python3
-                    text = input('spi> ')
-            except EOFError:
-                break
-            if not text:
-                continue
+def main():
+    while True:
+        try:
+            text = input('spi> ')
+        except EOFError:
+            break
+        if not text:
+            continue
 
-        lexer = Lexer(text)
-        parser = Parser(lexer)
-        interpreter = Interpreter(parser)
-        result = interpreter.interpret()
-        print(result)
+    lexer = Lexer(text)
+    parser = Parser(lexer)
+    interpreter = Interpreter(parser)
+    result = interpreter.interpret()
+    print(result)
 
 if __name__ == '__main__':
     main()
