@@ -124,7 +124,7 @@ class Lexer(object):
                 return Token(MUL, '*')
             if self.current_char == '/':
                 self.advance()
-                return Token(FLOAT_DIV, '/')
+                return Token(DIV, '/')
             if self.current_char == '(':
                 self.advance()
                 return Token(LPAREN, '(')
